@@ -45,10 +45,10 @@ if $RETURN; then
     else
         URL=$(whiptail --inputbox "" 8 39 --title "Insert the url for the tarball.tar.smth" 3>&1 1>&2 2>&3)
         wget $URL -P /usr/local/src/
-        TAR=$(ls -l /usr/local/src --sort=time --reverse | tail --lines 1 | awk '{print $9}')
-        tar -xf /usr/local/src/$TAR
+        TAR=$(ls -l /usr/local/src --sort=time | tail --lines 1 | awk '{print $9}')
+        tar -xf /usr/local/src/$TAR -C /usr/local/src/ > /dev/null
         rm /usr/local/src/$TAR
-        FOLDER=$(ls -l /usr/local/src/ --sort=time --reverse | tail --lines 1 | awk '{print $9}')
+        FOLDER=$(ls -l /usr/local/src/ --sort=time | tail --lines 1 | awk '{print $9}')
         cd /usr/local/src/$FOLDER
         ./configure
         make 
