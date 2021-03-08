@@ -11,17 +11,5 @@ Possible options:
 * Install from github/source (implemented)
 * Install from package manager (implemented)
 * Install from deb file (not implemented)
-* Install from tarball (not implemented)
+* Install from tarball (implemented)
 * Uninstall (not implemented)
-
-## Install from github/source (implemented)
-It is possible to write a github link and get the sourcecode from the authors main branch. Then it will be installed to `/usr/local/bin`
-
-## Install from package manager (implemented)
-
-## Install from deb file (not implemented)
-
-## Install from tarball (not implemented)
-
-## Uninstall (not implemented)
-
