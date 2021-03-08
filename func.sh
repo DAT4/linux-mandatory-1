@@ -4,7 +4,7 @@ install_tar()
 {
     DIR=$(download TAR)
     tar -xf $DIR -C '/usr/local/src/' > '/dev/null'
-    rm $DIR
+    rm -rf $DIR
     FOLDER=$(ls -l '/usr/local/src/' --sort=time | tail --lines 1 | awk '{print $9}')
     cd "/usr/local/src/$FOLDER"
     ./configure
@@ -14,8 +14,9 @@ install_tar()
 
 install_pkg()
 {
+    PASS="$1"
     NAME=$(whiptail --inputbox "What do you want to install?" 8 39 --title "Install from package manager" 3>&1 1>&2 2>&3)
-    install_dependencies $NAME "$1 | sudo -S dpkg -i $DIR -qq 2> /dev/null)"
+    install_dependencies $NAME $PASS "$PASS | sudo -S apt-get install $NAME -qq 2> /dev/null)"
 }
 
 install_git()
@@ -30,8 +31,9 @@ install_git()
 
 install_deb()
 {
+    PASS="$1"
     DIR=$(download DEB)
     NAME=$(dpkg -I $DIR |grep Package: | cut -d ":" -f 2)
-    rm $DIR
-    install_dependencies $NAME "$1 | sudo -S dpkg -i $DIR -qq 2> /dev/null)"
+    rm -rf $DIR
+    install_dependencies $NAME $PASS "$PASS | sudo -S dpkg -i $DIR &> /dev/null)"
 }

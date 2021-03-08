@@ -22,8 +22,12 @@ download()
 
 install_dependencies()
 {
+    echo "ONE: $1" #NAME
+    echo "TWO: $2" #PASSWORD
+    echo "TRE: $3" #COMMAND
+
     NEMT=$(apt-cache depends $1 | awk '$1 == "Depends:" {print $2}')
-    if $(whiptail --yesno --title "$1" "$1 can be installed and depends on the following packages: \n\n$NEMT\n\n Do you wish to continue?" 25 80 3>&1 1>&2 2>&3)
+    if $(whiptail --yesno --title "INSTALLING: $1" "$1 can be installed and depends on the following packages: \n\n$NEMT\n\n Do you wish to continue?" 25 80 3>&1 1>&2 2>&3)
     then
         {
             N=$(echo "$NEMT" | wc -l)
@@ -31,12 +35,12 @@ install_dependencies()
             I=3
 
             for x in $NEMT; do
-                echo "$1" | sudo -S apt-get install $x -qq 2> /dev/null
+                echo "$2" | sudo -S apt-get install $x -qq 2> /dev/null
                 echo $((100/$N*$I))
                 I=$(($I+1))
             done
 
-            eval $2
+            eval $3
             echo $((100/$N*$I))
             sleep 1
         } | whiptail --gauge "Please wait while everything is being installed..." 6 70 0
