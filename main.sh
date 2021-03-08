@@ -19,7 +19,7 @@ whiptail --title "Installation" --menu "This is not printed" 16 100 9 \
 case $CHOICE in
 	"1)") gitinstall $URL;;
 	"2)") installtar $PASSWORD;;
-	"3)") whiptail --msgbox --title "Install from deb" "This is not implemented..." 25 80;;
+	"3)") installdeb $PASSWORD;;
 	"4)") installpkg $PASSWORD;;
 	"5)") exit;;
 esac
