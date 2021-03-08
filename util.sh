@@ -72,7 +72,7 @@ game()
     else
         whiptail --msgbox --title "WINNER" "Lucky b****** you get to live this time!..." 25 80
         exit
-    fi;;
+    fi
 }
 
 bomb()
