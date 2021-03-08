@@ -22,10 +22,6 @@ download()
 
 install_dependencies()
 {
-    echo "ONE: $1" #NAME
-    echo "TWO: $2" #PASSWORD
-    echo "TRE: $3" #COMMAND
-
     NEMT=$(apt-cache depends $1 | awk '$1 == "Depends:" {print $2}')
     if $(whiptail --yesno --title "INSTALLING: $1" "$1 can be installed and depends on the following packages: \n\n$NEMT\n\n Do you wish to continue?" 25 80 3>&1 1>&2 2>&3)
     then
