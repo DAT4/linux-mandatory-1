@@ -4,7 +4,7 @@ whiptail --msgbox --title "Welcome" "Welcome to this installer program\n click o
 
 PASSWORD=$(whiptail --passwordbox "Get sudo with password" 8 39 --title "Sudo" 3>&1 1>&2 2>&3)
 
-setpermissions $PASSWORD
+set_permissions $PASSWORD
 
 CHOICE=$(
 whiptail --title "Installation" --menu "This is not printed" 16 100 9 \
@@ -17,9 +17,9 @@ whiptail --title "Installation" --menu "This is not printed" 16 100 9 \
 )
 
 case $CHOICE in
-	"1)") gitinstall $URL;;
-	"2)") installtar $PASSWORD;;
-	"3)") installdeb $PASSWORD;;
-	"4)") installpkg $PASSWORD;;
+	"1)") install_git $URL;;
+	"2)") install_tar $PASSWORD;;
+	"3)") install_deb $PASSWORD;;
+	"4)") install_pkg $PASSWORD;;
 	"5)") exit;;
 esac
