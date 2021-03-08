@@ -2,7 +2,6 @@
 
 PASSWORD=$(whiptail --passwordbox "Get sudo with password" 8 39 --title "Sudo" 3>&1 1>&2 2>&3)
 
-#PERMISSION PART IS DONE STEP 10
 PERMISSIONS=$(ls -l /usr/local |grep src |awk '{print $1}' | tail -c 4)
 if [ "$PERMISSIONS" = "rwx" ]
 then
@@ -23,20 +22,11 @@ else
     echo $PASSWORD | sudo -S chmod a+rwx /usr/local/bin
 fi
 
-
-
-
 # STEP 1 INFORM THE USER THAT WE WILL INSTALL SOM STUFF
 whiptail --msgbox --title "Welcome" "Welcome to this installer program\n click ok to continue..." 25 80
 
-if (whiptail --title "Pick option!" --yesno "Do you want to install something from souce?" 8 78); then
-    RETURN=true
-else
-    RETURN=false
-fi
-
-
-if $RETURN; then
+if (whiptail --title "Pick option!" --yesno "Do you want to install something from souce?" 8 78)
+then
     #INSTALLING FROM SOURCE
     if (whiptail --title "Git or Tarball!" --yesno "If you want to install from git click yes, if you want to instal from a tarball click no." 8 78)
     then
@@ -76,9 +66,7 @@ else
         echo "$PASSWORD" | sudo -S apt-get install $NAME -qq 2> /dev/null
         echo $((100/$N*$I))
         sleep 1
-
-    } | whiptail --gauge "Please wait while everything is being installed..." 6 50 0
+    } | whiptail --gauge "Please wait while everything is being installed..." 6 70 0
     
     whiptail --msgbox --title "Finished" "$NAME is sucessfully installed" 25 80
 fi
-
