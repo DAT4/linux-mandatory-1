@@ -16,12 +16,14 @@ install_pkg()
 {
     PASS="$1"
     NAME=$(whiptail --inputbox "What do you want to install?" 8 39 --title "Install from package manager" 3>&1 1>&2 2>&3)
+    check_for_error $?
     install_dependencies $NAME $PASS "$PASS | sudo -S apt-get install $NAME -qq 2> /dev/null)"
 }
 
 install_git()
 {
     URL=$(whiptail --inputbox "" 8 39 --title "Insert the url for the github repo" 3>&1 1>&2 2>&3)
+    check_for_error $?
     git -C /usr/local/src  clone $URL
     cd /usr/local/src/$(basename $URL)
     ./configure
